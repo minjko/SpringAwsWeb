@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'org.springframework.boot' version '3.3.5'        // Spring boot 버전
+    id 'io.spring.dependency-management' version '1.1.4' // Spring boot의 의존성 관리 플러그인 : 2025년 6월 기준 가장 최신 안정화 버전
+}
+
+group = 'com.spring.board' // GroupId
+version = '1.0-SNAPSHOT'   // ArtifactId
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17         // 코드 작성 기준 버전
+    targetCompatibility = JavaVersion.VERSION_17         // 생성되는 클래스 파일(.class)의 JVM 호환 버전
+}
+
+repositories {
+    mavenCentral()         // 의존성(라이브러리)들을 받을 원격저장소
+    // jcenter() : 2022년 2월 지원 중단
+}
+
+dependencies {             // 개발에 필요한 의존성 선언
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // Lombok
+//    implementation 'org.projectlombok:lombok'
+//    testImplementation 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    // JUnit4로 테스트 실행을 위한 JUnit Vintage 엔진 추가
+    testImplementation("org.junit.vintage:junit-vintage-engine") {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+
+    // Spring Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // H2
+    implementation 'com.h2database:h2'
+    testImplementation 'com.h2database:h2'
+
+    // Mustache - 템플릿 엔진
+    implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
+    // Spring Security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // OAuth2 로그인 구현
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    // 세션 저장소 : DB에 저장
+    implementation 'org.springframework.session:spring-session-jdbc'
+
+    // 임의 사용자 추가를 위한 시큐리티 의존성
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+    useJUnitPlatform()
+}
