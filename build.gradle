@@ -55,6 +55,9 @@ dependencies {             // 개발에 필요한 의존성 선언
 
     // 임의 사용자 추가를 위한 시큐리티 의존성
     testImplementation 'org.springframework.security:spring-security-test'
+
+    // MariaDB 드라이버
+    implementation 'org.mariadb.jdbc:mariadb-java-client'
 }
 
 test {
