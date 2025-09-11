@@ -20,5 +20,3 @@ notifications:
   email:
     recipients:
       - komj36@gmail.com
-      -
-# 재 빌드를 위한 push 주석 (추후 삭제)
